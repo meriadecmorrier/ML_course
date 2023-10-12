@@ -6,7 +6,6 @@ Ridge Regression
 
 import numpy as np
 
-
 def ridge_regression(y, tx, lambda_):
     """implement ridge regression.
 
@@ -23,8 +22,10 @@ def ridge_regression(y, tx, lambda_):
     >>> ridge_regression(np.array([0.1,0.2]), np.array([[2.3, 3.2], [1., 0.1]]), 1)
     array([0.03947092, 0.00319628])
     """
-    # ***************************************************
-    # COPY YOUR CODE FROM EX03 HERE
-    # ridge regression: TODO
-    # ***************************************************
-    raise NotImplementedError
+
+    a=lambda_*np.identity(len(y))
+    b=np.dot(tx.T,tx)
+    left_term=np.dot(tx.T,tx)+2*len(y)*lambda_*np.identity(tx.shape[1])
+    right_term=np.dot(tx.T,y)
+    w=np.linalg.solve(left_term,right_term)
+    return(w)
